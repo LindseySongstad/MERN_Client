@@ -1,14 +1,13 @@
 import React from 'react'
 import useStyles from './styles';
 
-const Form = () => {
+const Post = () => {
     const classes = useStyles();
-    
     return (
         <div>
-            Form
+            Post
         </div>
     )
 }
 
-export default Form
+export default Post
