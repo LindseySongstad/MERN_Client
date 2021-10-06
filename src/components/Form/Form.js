@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { TextField, Button, Typography, Paper } from '@material-ui/core'
 import FileBase from 'react-file-base64'
 import { useDispatch } from 'react-redux';
-import {createPost} from '../../actions/posts'
 
 import useStyles from './styles';
+import { createPost } from '../../actions/posts'
 
 const Form = () => {
     const [postData, setPostData] = useState({
@@ -15,11 +15,12 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(postData);
 
         dispatch(createPost(postData));
-     };
+    };
 
-    const clear = () => {};
+    const clear = () => { };
     return (
         <Paper className={`${classes.root} ${classes.form}}`}>
             <form autoComplete="off" noValidate className={classes.form} onSubmit={handleSubmit}>
@@ -27,19 +28,19 @@ const Form = () => {
                 <TextField
                     name="creator"
                     variant="outlined"
-                    label="Creator" 
-                    
-                    //value={postData.creator}
+                    label="Creator"
+
+                    value={postData.creator}
                     fullWidth
-                    onChange={(e) => setPostData({ ...postData, Creator: e.target.value })}
+                    onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
                 />
                 <TextField
                     name="title"
                     variant="outlined"
-                    label="Title" 
+                    label="Title"
                     fullWidth
                     value={postData.title}
-                    onChange={(e) => setPostData({ ...postData, Title: e.target.value })}
+                    onChange={(e) => setPostData({ ...postData, title: e.target.value })}
                 />
                 <TextField
                     name="message"
@@ -47,7 +48,7 @@ const Form = () => {
                     label="Message"
                     fullWidth
                     value={postData.message}
-                    onChange={(e) => setPostData({ ...postData, Message: e.target.value })}
+                    onChange={(e) => setPostData({ ...postData, message: e.target.value })}
                 />
                 <TextField
                     name="tags"
@@ -55,17 +56,17 @@ const Form = () => {
                     label="Tags"
                     fullWidth
                     value={postData.tags}
-                    onChange={(e) => setPostData({ ...postData, Tags: e.target.value })}
+                    onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
                 />
                 <div className={classes.fileInput}>
-                    <FileBase 
+                    <FileBase
                         type="file"
                         multiple={false}
-                        onDone={({base64}) => setPostData({ ...postData, selectedFile: base64})}
+                        onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
                     />
                 </div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                <Button  variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
         </Paper>
     )
